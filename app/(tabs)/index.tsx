@@ -54,6 +54,7 @@ export default function InTheaterMovies() {
       onEndReachedThreshold={0.5}
       ListFooterComponent={isLoading ? <ActivityIndicator /> : null}
       contentContainerStyle={styles.container}
+      maxToRenderPerBatch={2}
       style={{ flex: 1 }}
       scrollEnabled={true}
     />

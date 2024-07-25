@@ -20,6 +20,7 @@ export default function TabLayout() {
         options={{
           title: "In Theaters",
           headerShown: true,
+          unmountOnBlur: true,
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon
               name={focused ? "play-circle" : "play-circle-outline"}
@@ -33,6 +34,7 @@ export default function TabLayout() {
         options={{
           title: "Popular",
           headerShown: true,
+          unmountOnBlur: true,
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon
               name={focused ? "star" : "star-outline"}
@@ -46,6 +48,7 @@ export default function TabLayout() {
         options={{
           title: "Top Rated",
           headerShown: true,
+          unmountOnBlur: true,
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon
               name={focused ? "trophy" : "trophy-outline"}
@@ -59,6 +62,7 @@ export default function TabLayout() {
         options={{
           title: "Upcoming",
           headerShown: true,
+          unmountOnBlur: true,
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon
               name={focused ? "calendar" : "calendar-outline"}

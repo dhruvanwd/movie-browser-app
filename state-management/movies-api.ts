@@ -20,7 +20,8 @@ export const mdbAPI = createApi({
       query: () => `authentication`,
     }),
     GetInTheaterMovies: builder.query<MovieResponse, { page: number }>({
-      query: ({ page }) => `movie/now_playing?language=en-US&page=${page}`,
+      query: ({ page }) =>
+        `movie/now_playing?language=en-US&page=${page}&region=IN`,
     }),
     GetPopularMovies: builder.query<MovieResponse, { page: number }>({
       query: ({ page }) => `movie/popular?language=en-US&page=${page}`,
