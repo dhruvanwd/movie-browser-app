@@ -8,8 +8,7 @@ import {
 
 import MovieCard from "@/components/MovieCard";
 import RenderError from "@/components/RenderError";
-import { ThemedText } from "@/components/ThemedText";
-import { ThemedView } from "@/components/ThemedView";
+import RenderPageLoader from "@/components/RenderPageLoader";
 
 import { useGetTopRatedMoviesQuery } from "@/state-management/movies-api";
 import { Movie } from "@/types";
@@ -34,13 +33,9 @@ export default function TopRatedMovies() {
   }, [isLoading]);
 
   if (isLoading && page === 1) {
-    return (
-      <ThemedView style={styles.center}>
-        <ThemedText>Loading...</ThemedText>
-      </ThemedView>
-    );
+    return <RenderPageLoader />;
   }
-
+  
   if (isError && error) {
     return <RenderError error={error} />;
   }
@@ -54,20 +49,19 @@ export default function TopRatedMovies() {
       onEndReachedThreshold={0.5}
       ListFooterComponent={isLoading ? <ActivityIndicator /> : null}
       contentContainerStyle={styles.container}
-      style={{ flex: 1 }}
+      maxToRenderPerBatch={2}
+      style={styles.flatList}
       scrollEnabled={true}
     />
   );
 }
 
 const styles = StyleSheet.create({
+  flatList: {
+    flex: 1,
+  },
   container: {
     padding: Platform.OS === "android" ? 16 : 0,
     backgroundColor: "#f5f5f5",
-  },
-  center: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
   },
 });

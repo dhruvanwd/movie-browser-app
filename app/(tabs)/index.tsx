@@ -13,6 +13,7 @@ import { ThemedView } from "@/components/ThemedView";
 
 import { useGetInTheaterMoviesQuery } from "@/state-management/movies-api";
 import { Movie } from "@/types";
+import RenderPageLoader from "@/components/RenderPageLoader";
 
 export default function InTheaterMovies() {
   const [page, setPage] = useState(1);
@@ -34,11 +35,7 @@ export default function InTheaterMovies() {
   }, [isLoading]);
 
   if (isLoading && page === 1) {
-    return (
-      <ThemedView style={styles.center}>
-        <ThemedText>Loading...</ThemedText>
-      </ThemedView>
-    );
+    return <RenderPageLoader />;
   }
 
   if (isError && error) {
@@ -55,20 +52,18 @@ export default function InTheaterMovies() {
       ListFooterComponent={isLoading ? <ActivityIndicator /> : null}
       contentContainerStyle={styles.container}
       maxToRenderPerBatch={2}
-      style={{ flex: 1 }}
+      style={styles.flatList}
       scrollEnabled={true}
     />
   );
 }
 
 const styles = StyleSheet.create({
+  flatList: {
+    flex: 1,
+  },
   container: {
     padding: Platform.OS === "android" ? 16 : 0,
     backgroundColor: "#f5f5f5",
-  },
-  center: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
   },
 });
