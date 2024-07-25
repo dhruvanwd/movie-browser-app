@@ -4,6 +4,7 @@ import React from "react";
 import { TabBarIcon } from "@/components/navigation/TabBarIcon";
 import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
+import SearchTabIcon from "@/components/SearchTabIcon";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -41,6 +42,16 @@ export default function TabLayout() {
               color={color}
             />
           ),
+        }}
+      />
+      <Tabs.Screen
+        name="search-movies"
+        options={{
+          href: "search-movies",
+          title: "Search",
+          headerShown: true,
+          unmountOnBlur: true,
+          tabBarIcon: SearchTabIcon, // Use the custom icon component
         }}
       />
       <Tabs.Screen
