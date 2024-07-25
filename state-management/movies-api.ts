@@ -22,9 +22,24 @@ export const mdbAPI = createApi({
     GetInTheaterMovies: builder.query<MovieResponse, { page: number }>({
       query: ({ page }) => `movie/now_playing?language=en-US&page=${page}`,
     }),
+    GetPopularMovies: builder.query<MovieResponse, { page: number }>({
+      query: ({ page }) => `movie/popular?language=en-US&page=${page}`,
+    }),
+    GetTopRatedMovies: builder.query<MovieResponse, { page: number }>({
+      query: ({ page }) => `movie/top_rated?language=en-US&page=${page}`,
+    }),
+    GetUpcomingMovies: builder.query<MovieResponse, { page: number }>({
+      query: ({ page }) => `movie/upcoming?language=en-US&page=${page}`,
+    }),
   }),
 });
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useAuthenticateUserQuery, useGetInTheaterMoviesQuery } = mdbAPI;
+export const {
+  useAuthenticateUserQuery,
+  useGetInTheaterMoviesQuery,
+  useGetPopularMoviesQuery,
+  useGetTopRatedMoviesQuery,
+  useGetUpcomingMoviesQuery,
+} = mdbAPI;

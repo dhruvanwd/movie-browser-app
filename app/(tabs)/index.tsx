@@ -14,7 +14,7 @@ import { ThemedView } from "@/components/ThemedView";
 import { useGetInTheaterMoviesQuery } from "@/state-management/movies-api";
 import { Movie } from "@/types";
 
-export default function Upcoming() {
+export default function InTheaterMovies() {
   const [page, setPage] = useState(1);
   const [movies, setMovies] = useState<Movie[]>([]);
   const { isError, isLoading, error, data } = useGetInTheaterMoviesQuery({
