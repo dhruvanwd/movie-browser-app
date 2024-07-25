@@ -7,6 +7,7 @@ interface MovieCardProps {
 }
 
 const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
+  const percentage = Math.round(movie.vote_average * 10);
   return (
     <View style={styles.card}>
       <Image
@@ -14,11 +15,13 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
         style={styles.poster}
       />
       <View style={styles.infoContainer}>
+        <View style={styles.rating}>
+          <Text style={styles.ratingText}>{percentage}%</Text>
+        </View>
         <Text style={styles.title}>{movie.title}</Text>
         <Text style={styles.releaseDate}>
           Release Date: {movie.release_date}
         </Text>
-        <Text style={styles.rating}>Rating: {movie.vote_average}</Text>
       </View>
     </View>
   );
@@ -42,17 +45,31 @@ const styles = StyleSheet.create({
   },
   infoContainer: {
     padding: 15,
+    position: "relative",
   },
   title: {
     fontSize: 18,
     fontWeight: "bold",
-    marginBottom: 10,
+    marginBottom: 8,
+    marginTop: 12,
   },
   releaseDate: {
     fontSize: 16,
     marginBottom: 5,
   },
   rating: {
+    borderRadius: 50,
+    height: 50,
+    width: 50,
+    padding: 8,
+    top: -26,
+    left: 16,
+    backgroundColor: "#97C4B8",
+    justifyContent: "center",
+    alignItems: "center",
+    position: "absolute",
+  },
+  ratingText: {
     fontSize: 16,
     fontWeight: "600",
   },

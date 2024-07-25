@@ -8,8 +8,6 @@ import {
 
 import MovieCard from "@/components/MovieCard";
 import RenderError from "@/components/RenderError";
-import { ThemedText } from "@/components/ThemedText";
-import { ThemedView } from "@/components/ThemedView";
 
 import { useGetInTheaterMoviesQuery } from "@/state-management/movies-api";
 import { Movie } from "@/types";
