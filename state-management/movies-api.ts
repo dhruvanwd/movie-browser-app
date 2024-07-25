@@ -1,5 +1,5 @@
 // Need to use the React-specific entry point to import createApi
-import { IAuthenticatedUser, MovieResponse } from "@/types";
+import { IAuthenticatedUser, MovieDetail, MovieResponse } from "@/types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 // Define a service using a base URL and expected endpoints
@@ -32,6 +32,10 @@ export const mdbAPI = createApi({
     GetUpcomingMovies: builder.query<MovieResponse, { page: number }>({
       query: ({ page }) => `movie/upcoming?language=en-US&page=${page}`,
     }),
+    // https://api.themoviedb.org/3/movie/1022789?language=en-US
+    GetMovieDetails: builder.query<MovieDetail, { id: number }>({
+      query: ({ id }) => `movie/${id}?language=en-US`,
+    }),
   }),
 });
 
@@ -43,4 +47,5 @@ export const {
   useGetPopularMoviesQuery,
   useGetTopRatedMoviesQuery,
   useGetUpcomingMoviesQuery,
+  useGetMovieDetailsQuery,
 } = mdbAPI;

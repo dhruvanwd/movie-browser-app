@@ -1,29 +1,45 @@
 import React from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
 import { Movie } from "@/types";
+import { useRouter } from "expo-router";
+import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 
 interface MovieCardProps {
   movie: Movie;
 }
 
 const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
+  const router = useRouter();
   const percentage = Math.round(movie.vote_average * 10);
   return (
-    <View style={styles.card}>
-      <Image
-        source={{ uri: `https://image.tmdb.org/t/p/w500${movie.poster_path}` }}
-        style={styles.poster}
-      />
-      <View style={styles.infoContainer}>
-        <View style={styles.rating}>
-          <Text style={styles.ratingText}>{percentage}%</Text>
+    <TouchableOpacity
+      activeOpacity={0.9}
+      onPress={() => {
+        router.push({
+          pathname: "/movie-details",
+          params: {
+            movieId: movie.id,
+          },
+        });
+      }}
+    >
+      <View style={styles.card}>
+        <Image
+          source={{
+            uri: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+          }}
+          style={styles.poster}
+        />
+        <View style={styles.infoContainer}>
+          <View style={styles.rating}>
+            <Text style={styles.ratingText}>{percentage}%</Text>
+          </View>
+          <Text style={styles.title}>{movie.title}</Text>
+          <Text style={styles.releaseDate}>
+            Release Date: {movie.release_date}
+          </Text>
         </View>
-        <Text style={styles.title}>{movie.title}</Text>
-        <Text style={styles.releaseDate}>
-          Release Date: {movie.release_date}
-        </Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

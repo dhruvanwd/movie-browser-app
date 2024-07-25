@@ -8,10 +8,10 @@ import {
 
 import MovieCard from "@/components/MovieCard";
 import RenderError from "@/components/RenderError";
+import RenderPageLoader from "@/components/RenderPageLoader";
 
 import { useGetInTheaterMoviesQuery } from "@/state-management/movies-api";
 import { Movie } from "@/types";
-import RenderPageLoader from "@/components/RenderPageLoader";
 
 export default function InTheaterMovies() {
   const [page, setPage] = useState(1);
