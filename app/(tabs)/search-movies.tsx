@@ -1,5 +1,5 @@
 import React from "react";
-import { FlatList, SafeAreaView, StyleSheet, TextInput } from "react-native";
+import { FlatList, StyleSheet, TextInput } from "react-native";
 
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
@@ -25,35 +25,32 @@ export default function SearchMovies() {
   }
   console.log(data?.total_results);
   return (
-    <SafeAreaView>
-      <ThemedView style={styles.container}>
-        <ThemedView style={styles.seachbox}>
-          <TextInput
-            style={styles.input}
-            onChangeText={onChangeText}
-            value={text}
-          />
-          <IconButton
-            name="close"
-            color="black"
-            onPress={() => onChangeText("")}
-            size={20}
-          />
-        </ThemedView>
-        <FlatList
-          data={data?.results}
-          renderItem={({ item }) => <MovieListItem movie={item} />}
-          keyExtractor={(item) => item.id.toString()}
-          numColumns={2}
-          contentContainerStyle={styles.listContainer}
-          scrollEnabled={true}
-          ListHeaderComponent={<ThemedText>Movies</ThemedText>}
-          style={{
-            flex: 1,
-          }}
-        />
-      </ThemedView>
-    </SafeAreaView>
+    <ThemedView style={styles.container}>
+      <TextInput
+        style={styles.input}
+        onChangeText={onChangeText}
+        value={text}
+      />
+      <IconButton
+        name="close"
+        color="black"
+        onPress={() => onChangeText("")}
+        style={styles.closeSearch}
+        size={20}
+      />
+      <FlatList
+        data={data?.results}
+        renderItem={({ item }) => <MovieListItem movie={item} />}
+        keyExtractor={(item) => item.id.toString()}
+        numColumns={2}
+        contentContainerStyle={styles.listContainer}
+        scrollEnabled={true}
+        ListHeaderComponent={
+          <ThemedText style={styles.listHeader}>Movies</ThemedText>
+        }
+        style={styles.container}
+      />
+    </ThemedView>
   );
 }
 
@@ -61,23 +58,28 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#f5f5f5",
-    height: 400,
+  },
+  closeSearch: {
+    position: "absolute",
+    right: 16,
+    width: 30,
+    height: 30,
+    top: 12,
   },
   input: {
     height: 40,
-    margin: 12,
+    margin: 8,
     borderWidth: 1,
     padding: 10,
     backgroundColor: "#f5f5f5",
     borderRadius: 8,
   },
-  seachbox: {
-    flex: 1,
-    position: "relative",
-  },
   listContainer: {
     paddingHorizontal: 10,
-    backgroundColor: "blue",
-    flex: 1,
+  },
+  listHeader: {
+    color: "black",
+    fontSize: 16,
+    fontWeight: "600",
   },
 });

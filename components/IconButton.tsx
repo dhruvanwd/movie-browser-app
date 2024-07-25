@@ -3,6 +3,8 @@ import {
   GestureResponderEvent,
   TouchableOpacity,
   StyleSheet,
+  StyleProp,
+  ViewStyle,
 } from "react-native";
 
 interface IconButtonProps {
@@ -10,11 +12,12 @@ interface IconButtonProps {
   color: string;
   size: number;
   onPress: (event: GestureResponderEvent) => void;
+  style?:StyleProp<ViewStyle>
 }
 
-const IconButton = ({ name, color, size, onPress }: IconButtonProps) => (
+const IconButton = ({ name, color, size, onPress, style }: IconButtonProps) => (
   <TouchableOpacity
-    style={styles.iconButton}
+    style={[styles.iconButton, style]}
     onPress={onPress}
     activeOpacity={0.8}
   >
@@ -33,11 +36,6 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 }, // Shadow offset for iOS
     shadowOpacity: 0.3, // Shadow opacity for iOS
     shadowRadius: 3, // Shadow radius for iOS
-    position: "absolute",
-    right: 20,
-    width: 30,
-    height: 30,
-    top: 16,
   },
 });
 
