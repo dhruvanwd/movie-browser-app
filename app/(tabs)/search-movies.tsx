@@ -35,7 +35,7 @@ export default function SearchMovies() {
       <IconButton
         name="close"
         color="black"
-        onPress={() => onChangeText("")}
+        onPress={() => onChangeText("")} //TODO: add debounce to avoid excess api call on each key stroke
         style={styles.closeSearch}
         size={20}
       />
