@@ -1,7 +1,8 @@
 import React from "react";
 import { Movie } from "@/types";
 import { useRouter } from "expo-router";
-import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import FallBackImage from "./FallBackImage";
 
 interface MovieListItemProps {
   movie: Movie;
@@ -24,7 +25,7 @@ const MovieListItem: React.FC<MovieListItemProps> = ({ movie }) => {
       }}
     >
       <View style={styles.card}>
-        <Image
+        <FallBackImage
           source={{
             uri: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
           }}

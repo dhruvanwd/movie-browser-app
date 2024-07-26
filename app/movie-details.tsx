@@ -1,10 +1,11 @@
 import React from "react";
 import { useLocalSearchParams } from "expo-router";
-import { Text, Image, StyleSheet, ScrollView } from "react-native";
+import { Text, StyleSheet, ScrollView } from "react-native";
 
 import RenderError from "@/components/RenderError";
 import RenderPageLoader from "@/components/RenderPageLoader";
 import { useGetMovieDetailsQuery } from "@/state-management/movies-api";
+import FallBackImage from "@/components/FallBackImage";
 
 interface MovieDetailsProps {
   movieId: number;
@@ -25,7 +26,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = () => {
 
   return (
     <ScrollView style={styles.container}>
-      <Image
+      <FallBackImage
         source={{ uri: `https://image.tmdb.org/t/p/w500${data?.poster_path}` }}
         style={styles.poster}
       />

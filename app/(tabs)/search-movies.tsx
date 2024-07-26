@@ -6,9 +6,9 @@ import { ThemedView } from "@/components/ThemedView";
 import IconButton from "@/components/IconButton";
 import RenderPageLoader from "@/components/RenderPageLoader";
 import RenderError from "@/components/RenderError";
+import MovieListItem from "@/components/MovieListItem";
 
 import { useSearchMoviesQuery } from "@/state-management/movies-api";
-import MovieListItem from "@/components/MovieListItem";
 
 export default function SearchMovies() {
   const [text, onChangeText] = React.useState("king");
@@ -23,13 +23,14 @@ export default function SearchMovies() {
   if (isError && error) {
     return <RenderError error={error} />;
   }
-  console.log(data?.total_results);
+
   return (
     <ThemedView style={styles.container}>
       <TextInput
         style={styles.input}
         onChangeText={onChangeText}
         value={text}
+        placeholder="Movie name"
       />
       <IconButton
         name="close"
@@ -44,6 +45,11 @@ export default function SearchMovies() {
         keyExtractor={(item) => item.id.toString()}
         numColumns={2}
         contentContainerStyle={styles.listContainer}
+        ListEmptyComponent={
+          <ThemedText style={styles.emptyWarning}>
+            {text.length ? "No Movies Found..!" : "Search to find movies"}
+          </ThemedText>
+        }
         scrollEnabled={true}
         ListHeaderComponent={
           <ThemedText style={styles.listHeader}>Movies</ThemedText>
@@ -81,5 +87,12 @@ const styles = StyleSheet.create({
     color: "black",
     fontSize: 16,
     fontWeight: "600",
+  },
+  emptyWarning: {
+    color: "black",
+    justifyContent: "center",
+    textAlign: "center",
+    fontSize: 20,
+    marginTop: 40,
   },
 });
