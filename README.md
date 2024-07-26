@@ -53,3 +53,17 @@ Top Rated: TMDB Top Rated API
 
 Upcoming: TMDB Upcoming API
 ```
+
+
+## Screenshots
+
+### Movie List
+![Now Playing](/screenshots/1.jpg)
+
+![Popular](/screenshots/2.jpg)
+
+![Search](/screenshots/3.jpg)
+
+![Top Rated](/screenshots/4.jpg)
+
+![Upcoming](/screenshots/5.jpg)
