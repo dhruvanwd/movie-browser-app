@@ -1,18 +1,22 @@
 import React from "react";
 import { Stack, useLocalSearchParams } from "expo-router";
-import { Text, StyleSheet, ScrollView } from "react-native";
+import { StyleSheet, ScrollView } from "react-native";
 
 import FallBackImage from "@/components/FallBackImage";
 import RenderError from "@/components/RenderError";
 import RenderPageLoader from "@/components/RenderPageLoader";
 
 import { useGetMovieDetailsQuery } from "@/state-management/movies-api";
+import { Colors } from "@/constants/Colors";
+import useTheme from "@/hooks/useTheme";
+import { ThemedText } from "@/components/ThemedText";
 
 interface MovieDetailsProps {
   movieId: number;
 }
 
 const MovieDetails: React.FC<MovieDetailsProps> = () => {
+  const theme = useTheme();
   const params = useLocalSearchParams<{ name: string; movieId: string }>();
   const { isError, isFetching, isLoading, data, error } =
     useGetMovieDetailsQuery({ id: Number(params.movieId) });
@@ -26,7 +30,14 @@ const MovieDetails: React.FC<MovieDetailsProps> = () => {
   }
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView
+      style={[
+        styles.container,
+        {
+          backgroundColor: Colors[theme].background,
+        },
+      ]}
+    >
       <Stack.Screen
         options={{
           title: params.name,
@@ -36,24 +47,24 @@ const MovieDetails: React.FC<MovieDetailsProps> = () => {
         source={{ uri: `https://image.tmdb.org/t/p/w500${data?.poster_path}` }}
         style={styles.poster}
       />
-      <Text style={styles.title}>{data?.title}</Text>
-      <Text style={styles.releaseDate}>
+      <ThemedText style={styles.title}>{data?.title}</ThemedText>
+      <ThemedText style={styles.releaseDate}>
         Release Date: {new Date(data?.release_date!).toDateString()}
-      </Text>
-      <Text style={styles.rating}>
+      </ThemedText>
+      <ThemedText style={styles.rating}>
         Average Rating: {data?.vote_average.toFixed(1)}
-      </Text>
-      <Text style={styles.overview}>{data?.overview}</Text>
-      <Text style={styles.subHeading}>Genres:</Text>
-      <Text style={styles.details}>
+      </ThemedText>
+      <ThemedText style={styles.overview}>{data?.overview}</ThemedText>
+      <ThemedText style={styles.subHeading}>Genres:</ThemedText>
+      <ThemedText style={styles.details}>
         {data?.genres.map((genre) => genre.name).join(", ")}
-      </Text>
-      <Text style={styles.subHeading}>Runtime:</Text>
-      <Text style={styles.details}>{data?.runtime} minutes</Text>
-      <Text style={styles.subHeading}>Production Companies:</Text>
-      <Text style={styles.details}>
+      </ThemedText>
+      <ThemedText style={styles.subHeading}>Runtime:</ThemedText>
+      <ThemedText style={styles.details}>{data?.runtime} minutes</ThemedText>
+      <ThemedText style={styles.subHeading}>Production Companies:</ThemedText>
+      <ThemedText style={styles.details}>
         {data?.production_companies.map((company) => company.name).join(", ")}
-      </Text>
+      </ThemedText>
     </ScrollView>
   );
 };

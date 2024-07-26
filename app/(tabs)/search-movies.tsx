@@ -9,8 +9,11 @@ import RenderError from "@/components/RenderError";
 import MovieListItem from "@/components/MovieListItem";
 
 import { useSearchMoviesQuery } from "@/state-management/movies-api";
+import useTheme from "@/hooks/useTheme";
+import { Colors } from "@/constants/Colors";
 
 export default function SearchMovies() {
+  const theme = useTheme();
   const [text, onChangeText] = React.useState("");
   const { isError, isLoading, data, error } = useSearchMoviesQuery({
     searchText: text,
@@ -25,7 +28,14 @@ export default function SearchMovies() {
   }
 
   return (
-    <ThemedView style={styles.container}>
+    <ThemedView
+      style={[
+        styles.container,
+        {
+          backgroundColor: Colors[theme].background,
+        },
+      ]}
+    >
       <TextInput
         style={styles.input}
         onChangeText={onChangeText}
@@ -46,13 +56,29 @@ export default function SearchMovies() {
         numColumns={2}
         contentContainerStyle={styles.listContainer}
         ListEmptyComponent={
-          <ThemedText style={styles.emptyWarning}>
+          <ThemedText
+            style={[
+              styles.emptyWarning,
+              {
+                color: Colors[theme].text,
+              },
+            ]}
+          >
             {text.length ? "No Movies Found..!" : "Search to find movies"}
           </ThemedText>
         }
         scrollEnabled={true}
         ListHeaderComponent={
-          <ThemedText style={styles.listHeader}>Movies</ThemedText>
+          <ThemedText
+            style={[
+              styles.listHeader,
+              {
+                color: Colors[theme].text,
+              },
+            ]}
+          >
+            Movies
+          </ThemedText>
         }
         style={styles.container}
       />
@@ -63,7 +89,6 @@ export default function SearchMovies() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f5f5f5",
   },
   closeSearch: {
     position: "absolute",
@@ -89,7 +114,6 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   emptyWarning: {
-    color: "black",
     justifyContent: "center",
     textAlign: "center",
     fontSize: 20,

@@ -11,9 +11,12 @@ import RenderError from "@/components/RenderError";
 import RenderPageLoader from "@/components/RenderPageLoader";
 
 import { useGetInTheaterMoviesQuery } from "@/state-management/movies-api";
+import { Colors } from "@/constants/Colors";
+import useTheme from "@/hooks/useTheme";
 import { Movie } from "@/types";
 
 export default function InTheaterMovies() {
+  const theme = useTheme();
   const [page, setPage] = useState(1);
   const [movies, setMovies] = useState<Movie[]>([]);
   const { isError, isLoading, error, data } = useGetInTheaterMoviesQuery({
@@ -47,7 +50,12 @@ export default function InTheaterMovies() {
       onEndReached={loadMore}
       onEndReachedThreshold={0.5}
       ListFooterComponent={isLoading ? <ActivityIndicator /> : null}
-      contentContainerStyle={styles.container}
+      contentContainerStyle={[
+        styles.container,
+        {
+          backgroundColor: Colors[theme].background,
+        },
+      ]}
       maxToRenderPerBatch={2}
       style={styles.flatList}
       scrollEnabled={true}
@@ -61,6 +69,5 @@ const styles = StyleSheet.create({
   },
   container: {
     padding: Platform.OS === "android" ? 16 : 0,
-    backgroundColor: "#f5f5f5",
   },
 });
