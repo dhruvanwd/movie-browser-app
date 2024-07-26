@@ -9,11 +9,8 @@ import RenderError from "@/components/RenderError";
 import MovieListItem from "@/components/MovieListItem";
 
 import { useSearchMoviesQuery } from "@/state-management/movies-api";
-import useTheme from "@/hooks/useTheme";
-import { Colors } from "@/constants/Colors";
 
 export default function SearchMovies() {
-  const theme = useTheme();
   const [text, onChangeText] = React.useState("");
   const { isError, isLoading, data, error } = useSearchMoviesQuery({
     searchText: text,
@@ -28,14 +25,7 @@ export default function SearchMovies() {
   }
 
   return (
-    <ThemedView
-      style={[
-        styles.container,
-        {
-          backgroundColor: Colors[theme].background,
-        },
-      ]}
-    >
+    <ThemedView style={styles.container}>
       <TextInput
         style={styles.input}
         onChangeText={onChangeText}
@@ -56,29 +46,13 @@ export default function SearchMovies() {
         numColumns={2}
         contentContainerStyle={styles.listContainer}
         ListEmptyComponent={
-          <ThemedText
-            style={[
-              styles.emptyWarning,
-              {
-                color: Colors[theme].text,
-              },
-            ]}
-          >
+          <ThemedText style={styles.emptyWarning}>
             {text.length ? "No Movies Found..!" : "Search to find movies"}
           </ThemedText>
         }
         scrollEnabled={true}
         ListHeaderComponent={
-          <ThemedText
-            style={[
-              styles.listHeader,
-              {
-                color: Colors[theme].text,
-              },
-            ]}
-          >
-            Movies
-          </ThemedText>
+          <ThemedText style={styles.listHeader}>Movies</ThemedText>
         }
         style={styles.container}
       />
