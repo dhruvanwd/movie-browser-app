@@ -1,18 +1,18 @@
 import React from "react";
-import { Stack, useLocalSearchParams, useRouter } from "expo-router";
+import { Stack, useLocalSearchParams } from "expo-router";
 import { Text, StyleSheet, ScrollView } from "react-native";
 
+import FallBackImage from "@/components/FallBackImage";
 import RenderError from "@/components/RenderError";
 import RenderPageLoader from "@/components/RenderPageLoader";
+
 import { useGetMovieDetailsQuery } from "@/state-management/movies-api";
-import FallBackImage from "@/components/FallBackImage";
 
 interface MovieDetailsProps {
   movieId: number;
 }
 
 const MovieDetails: React.FC<MovieDetailsProps> = () => {
-  const router = useRouter();
   const params = useLocalSearchParams<{ name: string; movieId: string }>();
   const { isError, isFetching, isLoading, data, error } =
     useGetMovieDetailsQuery({ id: Number(params.movieId) });
