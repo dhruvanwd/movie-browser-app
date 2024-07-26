@@ -38,6 +38,7 @@ export default function RootLayout() {
         <AuthenticateUser>
           <Stack>
             <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="movie-details" options={{ headerShown: true, }} />
             <Stack.Screen name="+not-found" />
           </Stack>
         </AuthenticateUser>

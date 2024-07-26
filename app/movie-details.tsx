@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocalSearchParams } from "expo-router";
+import { Stack, useLocalSearchParams, useRouter } from "expo-router";
 import { Text, StyleSheet, ScrollView } from "react-native";
 
 import RenderError from "@/components/RenderError";
@@ -12,7 +12,8 @@ interface MovieDetailsProps {
 }
 
 const MovieDetails: React.FC<MovieDetailsProps> = () => {
-  const params = useLocalSearchParams();
+  const router = useRouter();
+  const params = useLocalSearchParams<{ name: string; movieId: string }>();
   const { isError, isFetching, isLoading, data, error } =
     useGetMovieDetailsQuery({ id: Number(params.movieId) });
 
@@ -26,6 +27,11 @@ const MovieDetails: React.FC<MovieDetailsProps> = () => {
 
   return (
     <ScrollView style={styles.container}>
+      <Stack.Screen
+        options={{
+          title: params.name,
+        }}
+      />
       <FallBackImage
         source={{ uri: `https://image.tmdb.org/t/p/w500${data?.poster_path}` }}
         style={styles.poster}

@@ -20,6 +20,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
           pathname: "/movie-details",
           params: {
             movieId: movie.id,
+            name:movie.title
           },
         });
       }}

@@ -20,6 +20,7 @@ const MovieListItem: React.FC<MovieListItemProps> = ({ movie }) => {
           pathname: "/movie-details",
           params: {
             movieId: movie.id,
+            name: movie.title,
           },
         });
       }}
