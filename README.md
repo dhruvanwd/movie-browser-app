@@ -1,50 +1,55 @@
-# Welcome to your Expo app 👋
+# Movie Browswe App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+##### Movie borwser is a React Native application built with Expo and TypeScript that allows users to browse movies from different categories (Now Playing, Popular, Top Rated, Upcoming) provided by the TMDB API. 
+##### Users can search for movies and view detailed information about each movie.
 
-## Get started
+## Features
 
-1. Install dependencies
+- **Tabbed Interface**: Switch between different movie categories (Now Playing, Popular, Top Rated, Upcoming).
+- **Movie List**: Display a list of movies with posters, titles, release dates, and average ratings.
+- **Detailed View**: On tapping a movie item, navigate to a detailed view showing a larger movie poster, title, release date, average rating, and overview/description.
+- **Search Functionality**: Search for movies across all categories.
 
-   ```bash
-   npm install
-   ```
+## Screenshots
 
-2. Start the app
+Include screenshots of your app here.
 
-   ```bash
-    npx expo start
-   ```
+## How to run the project ?
 
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+1. **Clone the repository**:
+   ```sh
+   git clone https://github.com/dhruvanwd/movie-browser-app
+   cd movie-explorer
+2. ### Install dependencies:
 ```
+npm install 
+```
+Create a .env file in the root directory and add your TMDB API key:
+```
+EXPO_PUBLIC_TMDB_API=your_api_key_here
+EXPO_PUBLIC_TMDB_ACCESS_TOKEN=your_api_key_here
+```
+3. ### Start the project:
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+```
+npm start
+```
+Usage
+Run the application on your preferred simulator or device:
 
-## Learn more
+Use the tabbed interface or segmented control to switch between different movie categories.
 
-To learn more about developing your project with Expo, look at the following resources:
+Tap on any movie item to view detailed information about the movie.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+Use the search functionality to find movies across all categories.
 
-## Join the community
+### API Reference
+```
+Now Playing: TMDB Now Playing API
 
-Join our community of developers creating universal apps.
+Popular: TMDB Popular API
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Top Rated: TMDB Top Rated API
+
+Upcoming: TMDB Upcoming API
+```
