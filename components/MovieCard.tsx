@@ -1,8 +1,9 @@
 import React from "react";
-import { Movie } from "@/types";
 import { useRouter } from "expo-router";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+
 import FallBackImage from "./FallBackImage";
+import { Movie } from "@/types";
 
 interface MovieCardProps {
   movie: Movie;

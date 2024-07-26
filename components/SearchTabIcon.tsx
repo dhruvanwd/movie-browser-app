@@ -1,4 +1,5 @@
 import { View, StyleSheet } from "react-native";
+
 import { TabBarIcon } from "./navigation/TabBarIcon";
 
 const SearchTabIcon = () => (

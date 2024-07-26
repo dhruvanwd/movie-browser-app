@@ -11,7 +11,7 @@ import MovieListItem from "@/components/MovieListItem";
 import { useSearchMoviesQuery } from "@/state-management/movies-api";
 
 export default function SearchMovies() {
-  const [text, onChangeText] = React.useState("king");
+  const [text, onChangeText] = React.useState("");
   const { isError, isLoading, data, error } = useSearchMoviesQuery({
     searchText: text,
   });
