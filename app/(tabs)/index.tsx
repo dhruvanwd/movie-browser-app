@@ -27,7 +27,6 @@ export default function InTheaterMovies() {
   }, [data?.results]);
 
   const loadMore = useCallback(() => {
-    console.log("Loading more...");
     if (isLoading) return;
     setPage((prevPage) => prevPage + 1);
   }, [isLoading]);
