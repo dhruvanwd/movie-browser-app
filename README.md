@@ -67,3 +67,7 @@ Upcoming: TMDB Upcoming API
 ![Top Rated](/screenshots/4.jpg)
 
 ![Upcoming](/screenshots/5.jpg)
+
+### Movie Details
+
+![Movie Details](/screenshots/6.jpg)
